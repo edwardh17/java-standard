@@ -12,7 +12,7 @@ public class LugarDAOImpl implements LugarDAO {
 
     @Override
     public void grabar(Connection connection, Lugar lugar) throws SQLException {
-        PreparedStatement stmt = connection.prepareStatement("insert into lugar1 (id, NombreResponsable, Direccion, Router) values (?, ?,?,?) ");
+        PreparedStatement stmt = connection.prepareStatement("insert into lugar (id, NombreResponsable, Direccion, Router) values (?, ?,?,?) ");
         stmt.setInt(1, lugar.getId());
         stmt.setString(2, lugar.getNombreResponsable());
         stmt.setString(3, lugar.getDireccion());
@@ -25,7 +25,7 @@ public class LugarDAOImpl implements LugarDAO {
         List<Lugar> lugares = new ArrayList();
         Statement smtm = connection.createStatement();
 
-        ResultSet result = smtm.executeQuery("select * from lugar1");
+        ResultSet result = smtm.executeQuery("select * from lugar");
 
         while (result.next()) {
             int id = result.getInt("id");
@@ -52,7 +52,7 @@ public class LugarDAOImpl implements LugarDAO {
     public Lugar buscarPorId(Connection connection, int id)throws SQLException {
         Lugar lugar = null;
             
-        PreparedStatement smtm = connection.prepareStatement("select * from lugar1 where id=?");
+        PreparedStatement smtm = connection.prepareStatement("select * from lugar where id=?");
         smtm.setInt(1, id);
         ResultSet result = smtm.executeQuery();
 
