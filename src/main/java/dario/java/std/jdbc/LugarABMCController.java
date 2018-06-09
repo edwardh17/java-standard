@@ -35,6 +35,9 @@ public class LugarABMCController implements Initializable {
 
     @FXML
     private Button btnCancelar;
+    
+    @FXML
+    private Button btnBorrar;
 
     @FXML
     private TextField txtRouter;
@@ -60,6 +63,10 @@ public class LugarABMCController implements Initializable {
 
     }
 
+    @FXML
+    void borrar(ActionEvent event) {
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
