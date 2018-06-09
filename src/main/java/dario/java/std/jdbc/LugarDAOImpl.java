@@ -40,12 +40,20 @@ public class LugarDAOImpl implements LugarDAO {
 
     @Override
     public void actualizar(Connection connection, Lugar lugar)  throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement("update lugar set NombreResponsable = ?, Direccion = ?, Router = ? where id = ? ");
+        stmt.setString(1, lugar.getNombreResponsable());
+        stmt.setString(2, lugar.getDireccion());
+        stmt.setString(3, lugar.getRouter());
+        stmt.setInt(4, lugar.getId());
 
+        stmt.executeUpdate();
     }
 
     @Override
-    public void borrar(Connection connection, Lugar lugar)  throws SQLException {
-
+    public void borrar(Connection connection, Lugar lugar)  throws SQLException {         
+        PreparedStatement smtm = connection.prepareStatement("delete from lugar where id=?");
+        smtm.setInt(1, lugar.getId());
+        smtm.executeUpdate();
     }
 
     @Override

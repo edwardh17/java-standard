@@ -37,6 +37,20 @@ public class Lugar {
     public int getId() {
         return id;
     }
+
+    public void setNombreResponsable(String nombreResponsable) {
+        this.nombreResponsable = nombreResponsable;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setRouter(String router) {
+        this.router = router;
+    }
+    
+    
     
     
 
