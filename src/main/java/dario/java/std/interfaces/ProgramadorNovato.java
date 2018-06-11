@@ -8,7 +8,7 @@ public class ProgramadorNovato extends Persona implements Programador {
 
     @Override
     public Codigo programar() {
-        throw new RuntimeException(getNombre() + " No se pogramar");
+        throw new RuntimeException(getNombre() + " No se programar");
     }
         
 }
