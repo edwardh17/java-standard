@@ -28,7 +28,7 @@ public class FactoriaDeSoftware {
         programadores.add(new ProgramadorJava("Pedro","Pérez", 30));
         programadores.add(new ProgramadorCSharp("Diego","Pérez", 30));
         programadores.add(new ProgramadorCSharp("Juanita","Pérez", 30));
-        programadores.add(new ProgramadorNovato("Brian","Gomez", 30));
+        //programadores.add(new ProgramadorNovato("Brian","Gomez", 30));
         programadores.add(new ProgramadorJava("Carlos","Pérez", 30));
         programadores.add(new ProgramadorCSharp("Lucila","Pérez", 30));
         programadores.add(new ProgramadorJava("Carlota","Pérez", 30));
