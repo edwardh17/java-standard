@@ -8,6 +8,9 @@ public class ProgramadorCSharp extends ProgramadorNovato /*implements Programado
 
     @Override
     public Codigo programar() {
+        String codigoFuente = "lbkjasdhh flkj";
+        Integer lineasCodigo = 1250;
+        
         System.out.println(getNombre()+ " - Programando en C#");
         return new CodigoCSharp("codigo C#");
     }

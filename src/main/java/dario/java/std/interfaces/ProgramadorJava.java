@@ -11,6 +11,10 @@ public class ProgramadorJava extends ProgramadorNovato /*implements Programador*
         System.out.println(getNombre()+ " - Programando en Java");
         return new CodigoJava("codigo JAVA");
     }
-
+    
+    public String toString() {
+        return this.getNombre() + " " + this.getApellido();
+    }
+ 
    
 }
