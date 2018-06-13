@@ -22,16 +22,25 @@ public class FactoriaDeSoftware {
     
     
     public static void main(String[] args) {
+        
+        ProgramacionEnC programacionEnC = new ProgramacionEnC();
+        
+        ProgramadorC programadorC = new ProgramadorC("Pedro", "Loco", 10, programacionEnC);
+        ProgramadorCPlusPlus programadorCpp = new ProgramadorCPlusPlus("Pedro", "Loquillo", 10, programacionEnC);
+        
         // Generics
         List<Programador> programadores = new ArrayList<>();
-        programadores.add(new ProgramadorJava("Juan","Pérez", 30));
-        programadores.add(new ProgramadorJava("Pedro","Pérez", 30));
-        programadores.add(new ProgramadorCSharp("Diego","Pérez", 30));
-        programadores.add(new ProgramadorCSharp("Juanita","Pérez", 30));
-        //programadores.add(new ProgramadorNovato("Brian","Gomez", 30));
-        programadores.add(new ProgramadorJava("Carlos","Pérez", 30));
-        programadores.add(new ProgramadorCSharp("Lucila","Pérez", 30));
-        programadores.add(new ProgramadorJava("Carlota","Pérez", 30));
+//        programadores.add(new ProgramadorJava("Juan","Pérez", 30));
+//        programadores.add(new ProgramadorJava("Pedro","Pérez", 30));
+//        programadores.add(new ProgramadorCSharp("Diego","Pérez", 30));
+//        programadores.add(new ProgramadorCSharp("Juanita","Pérez", 30));
+//        //programadores.add(new ProgramadorNovato("Brian","Gomez", 30));
+//        programadores.add(new ProgramadorJava("Carlos","Pérez", 30));
+//        programadores.add(new ProgramadorCSharp("Lucila","Pérez", 30));
+//        programadores.add(new ProgramadorJava("Carlota","Pérez", 30));
+        
+        programadores.add(programadorC);
+        programadores.add(programadorCpp);
         
         FactoriaDeSoftware factoria = new FactoriaDeSoftware(programadores);
         
