@@ -6,29 +6,31 @@ import java.util.List;
 
 public class ListExample {
 	public static void main(String[] args) {
-		List<Integer> list = new ArrayList<>();
-		
-                list.add(3);
-		list.add(new Integer(2));
-		list.add(1);
-		list.add(4);
-		list.add(5);
-		list.add(6);
-		list.add(8);
-		list.add(6);
-                list.add(6);
+		List<String> list = new ArrayList<>();
+		                
+                list.add("3");
+		list.add((new Integer(2)).toString());
+		list.add("1");
+		list.add("4");
+		list.add("5");
+		list.add("55");
+		list.add("8");
+		list.add("6");
+                list.add("6");
 
+                String elemento = list.get(5);
                 
-		for (Integer integer : list) {
-			System.out.println(integer);
+                
+		for (String elem : list) {
+			System.out.println(elem);
 		}
                 
                 for (int i = 0; i < list.size(); i++) {
-                    Integer integer = list.get(i);
+                    String integer = list.get(i);
                     System.out.println(integer);
                 }
                 
-                System.out.println(list.contains(10));
+                System.out.println(list.contains("10"));
                 
                 list.forEach(t -> System.out.println(t));
                 
@@ -39,13 +41,16 @@ public class ListExample {
                 //list.removeAll(Arrays.asList(6,6,6,5));
     
                 
-                list.forEach(t -> System.out.println(t));
+                list.forEach(pepe -> System.out.println(pepe));
                 
                 list.sort(null);
 
                 System.out.println("Ordenados:");
                 list.forEach(t -> System.out.println(t));
                 
+                
+                list.forEach(System.out::println);
+
 	}
 
 }
