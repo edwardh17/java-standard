@@ -11,13 +11,20 @@ import java.util.List;
 public class LugarDAOImpl implements LugarDAO {
 
     @Override
-    public void grabar(Connection connection, Lugar lugar) throws SQLException {
-        PreparedStatement stmt = connection.prepareStatement("insert into lugar (id, NombreResponsable, Direccion, Router) values (?, ?,?,?) ");
-        stmt.setInt(1, lugar.getId());
-        stmt.setString(2, lugar.getNombreResponsable());
-        stmt.setString(3, lugar.getDireccion());
-        stmt.setString(4, lugar.getRouter());
+    public Lugar grabar(Connection connection, Lugar lugar) throws SQLException {
+        String sql = "insert into lugar (NombreResponsable, Direccion, Router) values (?,?,?) ";
+        PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        stmt.setString(1, lugar.getNombreResponsable());
+        stmt.setString(2, lugar.getDireccion());
+        stmt.setString(3, lugar.getRouter());
         stmt.executeUpdate();
+        
+        ResultSet keys = stmt.getGeneratedKeys();
+        if (keys.next()) {
+            lugar.setId(keys.getInt(1));
+        }
+        
+        return lugar;
     }
 
     @Override

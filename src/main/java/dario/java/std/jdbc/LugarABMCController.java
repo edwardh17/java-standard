@@ -29,6 +29,8 @@ public class LugarABMCController implements Initializable {
 
     @FXML
     private ListView<Lugar> listLugares;
+    
+    private ObservableList<Lugar> lugares;
 
     @FXML
     private Button btnNuevo;
@@ -56,11 +58,18 @@ public class LugarABMCController implements Initializable {
     @FXML
     void nuevo(ActionEvent event) {
 
+
     }
 
     @FXML
     void grabar(ActionEvent event) {
-
+        try {
+            Lugar nuevo = new Lugar (txtResponsable.getText(), txtDireccion.getText(),
+                    txtRouter.getText());
+            lugares.add(dao.grabar(connection, nuevo));
+        } catch (SQLException ex) {
+            Logger.getLogger(LugarABMCController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -73,8 +82,8 @@ public class LugarABMCController implements Initializable {
         try {
             dao = new LugarDAOImpl();
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bair", "root", "");
-            ObservableList<Lugar> items =FXCollections.observableArrayList (dao.obtenerTodos(connection));
-            listLugares.setItems(items);
+            lugares =FXCollections.observableArrayList (dao.obtenerTodos(connection));
+            listLugares.getItems().addAll(lugares);
         } catch (SQLException ex) {
             Logger.getLogger(LugarABMCController.class.getName()).log(Level.SEVERE, null, ex);
         }

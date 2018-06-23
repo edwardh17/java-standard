@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LugarDAO {
     
-    void grabar(Connection connection , Lugar lugar) throws SQLException;
+    Lugar grabar(Connection connection , Lugar lugar) throws SQLException;
     List<Lugar> obtenerTodos(Connection connection) throws SQLException;
     void actualizar(Connection connection,Lugar lugar) throws SQLException;
     void borrar(Connection connection, Lugar lugar) throws SQLException;

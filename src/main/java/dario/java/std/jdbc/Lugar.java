@@ -38,6 +38,11 @@ public class Lugar {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     public void setNombreResponsable(String nombreResponsable) {
         this.nombreResponsable = nombreResponsable;
     }
@@ -56,7 +61,7 @@ public class Lugar {
 
     @Override
     public String toString() {
-        return "Lugar{" + "nombreResponsable=" + nombreResponsable + ", direccion=" + direccion + ", router=" + router + '}';
+        return nombreResponsable;
     }
     
     
