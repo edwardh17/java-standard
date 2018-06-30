@@ -12,10 +12,10 @@ import java.util.logging.Logger;
 public class EscrituraArchivosTexto {
 
     public static void main(String[] args) {
-        
         String palabras = "Come on rain down on me";
+    
+        File destino = new File("salida.txt");        
         
-        File destino = new File("salida.txt");
         try (FileWriter writer = new FileWriter(destino)) {
             
             for(int i = 0; i < palabras.length(); i++) {

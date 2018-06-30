@@ -18,7 +18,7 @@ public class LecturaArchivosTextoBuffer {
                 BufferedReader buffer = new BufferedReader(reader)) {
             String linea;
             while( (linea =  buffer.readLine()) != null ) {
-                System.out.println(linea);
+                System.out.println(linea.split(linea));
             }    
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LecturaArchivosTextoBuffer.class.getName()).log(Level.SEVERE, null, ex);
