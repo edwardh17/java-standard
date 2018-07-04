@@ -18,12 +18,19 @@ public class Cuadrante {
     private List<Cuadrante> horizontales;
     private List<Cuadrante> verticales;
 
+    private Random random = new Random();
+
+
     public Cuadrante(List<Cuadrante> horizontales,
             List<Cuadrante> verticales) {
         this.horizontales = horizontales;
         this.verticales = verticales;
 
         generar();
+    }
+
+    public int[][] getData() {
+        return data;
     }
 
     public boolean hayColisionFila(int fila, int valor) {
@@ -65,8 +72,7 @@ public class Cuadrante {
         if (candidatosValidos.isEmpty()) {
             return -1;
         } else {
-            Random r = new Random();
-            return candidatosValidos.get(r.nextInt(candidatosValidos.size()));
+            return candidatosValidos.get(random.nextInt(candidatosValidos.size()));
         }
 
     }
@@ -93,25 +99,39 @@ public class Cuadrante {
     }
 
     public static void main(String[] args) {
-        Cuadrante c1 = new Cuadrante(Collections.EMPTY_LIST, Collections.EMPTY_LIST);
-        c1.print();
-                 
-        Cuadrante c2 = new Cuadrante(Arrays.asList(c1), Collections.EMPTY_LIST);
-        c2.print();
 
-        Cuadrante c3 = new Cuadrante(Arrays.asList(c1,c2), Collections.EMPTY_LIST);
-        c3.print();
-        
-        Cuadrante c4 = new Cuadrante(Collections.EMPTY_LIST, Arrays.asList(c1));
-        c4.print();
-                 
-        Cuadrante c5 = new Cuadrante(Arrays.asList(c4), Arrays.asList(c2));
-        c5.print();
+        int count=0;
+        do {
+            try {
+                Cuadrante c22 = new Cuadrante(Collections.EMPTY_LIST, Collections.EMPTY_LIST);
 
-        Cuadrante c6 = new Cuadrante(Arrays.asList(c4,c5), Arrays.asList(c3));
-        c6.print();
+                Cuadrante c12 = new Cuadrante(Collections.EMPTY_LIST, Arrays.asList(c22));
 
-        
+                Cuadrante c32 = new Cuadrante(Collections.EMPTY_LIST, Arrays.asList(c22));
+
+                Cuadrante c21 = new Cuadrante(Arrays.asList(c22), Collections.EMPTY_LIST);
+
+                Cuadrante c23 = new Cuadrante(Arrays.asList(c22, c21), Collections.EMPTY_LIST);
+
+
+                Cuadrante c11 = new Cuadrante(Arrays.asList(c12), Arrays.asList(c21));
+
+                Cuadrante c13 = new Cuadrante(Arrays.asList(c11, c12), Arrays.asList(c23));
+
+                Cuadrante c31 = new Cuadrante(Arrays.asList(c32), Arrays.asList(c11, c21));
+
+                Cuadrante c33 = new Cuadrante(Arrays.asList(c31, c32), Arrays.asList(c13, c23));
+
+                Sudoku sudoku = new Sudoku(c11,c12,c13,c21,c22,c23,c31,c32,c33);
+
+                sudoku.print();
+
+                break;
+
+            } catch (Throwable th) {
+                System.out.println("Error al generar sudoku - intento: " + count++ + " - " + th.getMessage());
+            }
+        } while (count < 2000);
     }
 
 }
