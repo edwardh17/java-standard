@@ -39,7 +39,8 @@ public class LugarDAOImpl implements LugarDAO {
             String nombreResponsable = result.getString("NombreResponsable");
             String direccion = result.getString("direccion");
             String router = result.getString("Router");
-            lugares.add(new Lugar(id, nombreResponsable, direccion, router));
+            Lugar unLugar = new Lugar(id, nombreResponsable, direccion, router);
+            lugares.add(unLugar);
         }
         
         return lugares;
