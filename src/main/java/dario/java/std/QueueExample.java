@@ -27,6 +27,7 @@ public class QueueExample {
         System.out.println("pop:" + personas.poll());
         
         System.out.println("removeLast:" + personas.removeLast());
+        
         System.out.println("pollLast:" + personas.pollLast());
         
         

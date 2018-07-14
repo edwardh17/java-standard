@@ -2,10 +2,9 @@ package dario.java.std.streams;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
+import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,7 +15,7 @@ public class EscrituraArchivosTexto {
     
         File destino = new File("salida.txt");        
         
-        try (FileWriter writer = new FileWriter(destino)) {
+        try (Writer writer = new FileWriter(destino)) {
             
             for(int i = 0; i < palabras.length(); i++) {
                 writer.write((int)palabras.charAt(i));
