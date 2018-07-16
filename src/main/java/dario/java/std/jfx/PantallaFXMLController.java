@@ -25,5 +25,6 @@ public class PantallaFXMLController implements Initializable {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Se ejecutó el botón");
+        alert.show();
     }
 }
