@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -57,7 +59,7 @@ public class TextEditorPantallaController implements Initializable {
               
               String linea;
               while ((linea=buffer.readLine()) != null)                 
-                texto.appendText(linea + "\n");
+                texto.appendText(linea + "\r\n");
                                 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(TextEditorPantallaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,9 +73,18 @@ public class TextEditorPantallaController implements Initializable {
     @FXML
     void saveFileAction(ActionEvent event) {
         //char[] charsToSave = texto.getText().toCharArray();
+        
         try (FileWriter writer = new FileWriter(currentFile);
-                BufferedWriter buffer = new BufferedWriter(writer)) {
-                buffer.write(texto.getText());
+                BufferedWriter buffer = new BufferedWriter(writer);
+                Reader reader = new StringReader(texto.getText());
+                BufferedReader bufferedReader = new BufferedReader(reader)) {
+                
+                String linea;
+                while ((linea=bufferedReader.readLine()) != null) {                 
+                    buffer.write(linea);
+                    buffer.newLine();
+                }
+                
         } catch (IOException ex) {
             Logger.getLogger(TextEditorPantallaController.class.getName()).log(Level.SEVERE, null, ex);
         }        
