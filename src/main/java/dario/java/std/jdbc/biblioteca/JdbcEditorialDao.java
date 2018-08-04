@@ -13,30 +13,6 @@ public class JdbcEditorialDao
         extends SoporteDao<Editorial> 
         implements EditorialDao {
 
-    private static Logger logger = Logger.getLogger(JdbcEditorialDao.class.getName());
-    private Connection connection;
-
-    public JdbcEditorialDao() {
-        try {
-            String usuario = "root";
-            String clave = "";
-            String stringConection = "jdbc:mysql://localhost:3306/biblioteca";
-            connection = DriverManager.getConnection(stringConection, usuario, clave);
-        } catch (SQLException ex) {
-            logger.log(Level.SEVERE, null, ex);
-        }
-    }
-    
-        @Override
-    protected Logger getLogger() {
-        return logger;
-    }    
-
-    @Override
-    protected Connection obtenerConexion() {
-        return connection;
-    }
-
     @Override
     protected String obtenerSqlActualizar() {
         return "update editorial set nombre=?, pais=? where id=?";

@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
+    
+    private static Logger logger = Logger.getLogger(SoporteDao.class.getName());
 
     @Override
     public T grabar(T e) {
@@ -122,9 +124,14 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
             }
         });
     }
+    
+    protected Connection obtenerConexion() {
+        return AdministradorDeConexiones.getInstancia().getConnection();
+    }
 
-    protected abstract Logger getLogger();
-    protected abstract Connection obtenerConexion();
+    protected Logger getLogger() {
+        return logger;
+    }    
     protected abstract String generarSqlGrabar();
     protected abstract String obtenerSqlActualizar();
     protected abstract String obtenerNombreTabla();

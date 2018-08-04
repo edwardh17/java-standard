@@ -1,31 +1,23 @@
 package dario.java.std.jdbc.biblioteca;
 
-public class Libro {
+public class Libro extends Entidad {
 
-    private Integer id;
     private String titulo;
-    private String editorial;
+    private Editorial editorial;
     private Autor autor;
 
-    public Libro(Integer id, String titulo, String editorial, Autor autor) {
-        this.id = id;
+    public Libro(Integer id, String titulo, Editorial editorial, Autor autor) {
+        super(id);
         this.titulo = titulo;
         this.editorial = editorial;
         this.autor = autor;
     }
 
-    public Libro(String titulo, String editorial, Autor autor) {
+    public Libro(String titulo, Editorial editorial, Autor autor) {
+        super(null);
         this.titulo = titulo;
         this.editorial = editorial;
         this.autor = autor;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getTitulo() {
@@ -36,11 +28,11 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public String getEditorial() {
+    public Editorial getEditorial() {
         return editorial;
     }
 
-    public void setEditorial(String editorial) {
+    public void setEditorial(Editorial editorial) {
         this.editorial = editorial;
     }
 
