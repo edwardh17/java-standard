@@ -53,12 +53,12 @@ public class JdbcAutorDao implements AutorDao {
 
     @Override
     public void actualizar(Autor autor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Autor borrar(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -70,13 +70,8 @@ public class JdbcAutorDao implements AutorDao {
             
             List<Autor> autores = new ArrayList<>();
             
-            while (rs.next()) {
-                Integer id = rs.getInt("id");
-                String nombre = rs.getString("nombre");
-                String apellido = rs.getString("apellido");
-                String nacionalidad = rs.getString("nacionalidad");
-                Autor autor = new Autor(id, nombre, apellido, nacionalidad);
-                autores.add(autor);
+            while (rs.next()) {                
+                autores.add(crearAutor(rs));
             }
             
             return autores;
@@ -88,7 +83,33 @@ public class JdbcAutorDao implements AutorDao {
 
     @Override
     public Autor traerPorId(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String sql = "select id,nombre,apellido,nacionalidad from autor where id=?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            
+            Autor autor = null;
+            
+            if (rs.next()) {
+                autor = crearAutor(rs);
+            }
+                        
+            return autor;
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        
+    }
+    
+    private Autor crearAutor(ResultSet rs) throws SQLException {
+        Integer id = rs.getInt("id");
+        String nombre = rs.getString("nombre");
+        String apellido = rs.getString("apellido");
+        String nacionalidad = rs.getString("nacionalidad");
+        return new Autor(id, nombre, apellido, nacionalidad);
     }
     
 }
