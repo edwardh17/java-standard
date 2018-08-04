@@ -41,7 +41,7 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
 
             PreparedStatement stmt = obtenerConexion().prepareStatement(sql);
             Map<Integer, Object> parametros = obtenerParametros(e);
-            setearParametros(obtenerParametros(e), stmt);
+            setearParametros(parametros, stmt);
             stmt.setInt(parametros.size()+1, e.getId());
             
             ejecutarActualizacion(stmt);
@@ -129,8 +129,7 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
     protected abstract String obtenerSqlActualizar();
     protected abstract String obtenerNombreTabla();
     
-    protected abstract T crearEntidad(ResultSet rs);
+    protected abstract T crearEntidad(ResultSet rs) throws SQLException;
     protected abstract Map<Integer, Object> obtenerParametros(T e);
-
     
 }

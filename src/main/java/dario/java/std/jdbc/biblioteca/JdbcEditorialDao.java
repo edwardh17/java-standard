@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,38 +26,36 @@ public class JdbcEditorialDao
             logger.log(Level.SEVERE, null, ex);
         }
     }
+    
+        @Override
+    protected Logger getLogger() {
+        return logger;
+    }    
+
+    @Override
+    protected Connection obtenerConexion() {
+        return connection;
+    }
 
     @Override
     protected String obtenerSqlActualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "update editorial set nombre=?, pais=? where id=?";
     }
-
-    @Override
-    protected String obtenerNombreTabla() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected Editorial crearEntidad(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     
-    
-
-    @Override
-    protected Logger getLogger() {
-        return logger;
-    }
-
     @Override
     protected String generarSqlGrabar() {
         return "insert into editorial (nombre, pais) values (?,?)";
     }
 
     @Override
-    protected Connection obtenerConexion() {
-        return connection;
+    protected String obtenerNombreTabla() {
+        return "editorial";
+    }
+
+    @Override
+    protected Editorial crearEntidad(ResultSet rs) throws SQLException {
+        return new Editorial(rs.getInt("id"),
+                rs.getString("nombre"), rs.getString("pais"));
     }
 
     @Override
