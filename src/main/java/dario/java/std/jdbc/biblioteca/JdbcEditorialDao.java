@@ -2,6 +2,7 @@ package dario.java.std.jdbc.biblioteca;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -27,27 +28,23 @@ public class JdbcEditorialDao
         }
     }
 
+    @Override
+    protected String obtenerSqlActualizar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected String obtenerNombreTabla() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected Editorial crearEntidad(ResultSet rs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
-    @Override
-    public void actualizar(Editorial e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void borrar(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<Editorial> traerTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public Editorial traerPorId(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     protected Logger getLogger() {
