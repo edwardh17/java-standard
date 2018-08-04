@@ -5,18 +5,25 @@ public class Biblioteca {
     
     public static void main(String[] args) {
         AutorDao autorDao = new JdbcAutorDao();
+        EditorialDao editorialDao = new JdbcEditorialDao();
+        LibroDao libroDao = new JdbcLibroDao(editorialDao, autorDao);
         
-        Autor autor1 = new Autor("Julio", "Cortazar", "Argentina");
-        Autor autor2 = new Autor("Jorge Luis", "Borges", "Argentina");
+        Autor cortazar = new Autor("Julio", "Cortazar", "Argentina");
+        Autor borges = new Autor("Jorge Luis", "Borges", "Argentina");       
+        cortazar = autorDao.grabar(cortazar);
+        borges = autorDao.grabar(borges);
         
-        autorDao.grabar(autor1);
-        autorDao.grabar(autor2);
+        Editorial planeta = new Editorial("planeta", "España");
+        planeta = editorialDao.grabar(planeta);
         
-        autorDao.traerTodos().forEach(System.out::println);
+        Libro rayuela = new Libro("Rayuela", planeta, cortazar);
+        Libro elAleph = new Libro("El Aleph", planeta, borges);
         
+        libroDao.grabar(rayuela);
+        libroDao.grabar(elAleph);
         
-                
-                
+        libroDao.traerTodos().forEach(System.out::println);
+     
     }
 
     

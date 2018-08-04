@@ -11,6 +11,14 @@ public class Editorial extends Entidad {
         this.pais = pais;
     }
 
+    public Editorial(String nombre, String pais) {
+        super(null);
+        this.nombre = nombre;
+        this.pais = pais;
+    }
+    
+    
+
     public String getNombre() {
         return nombre;
     }
@@ -25,6 +33,11 @@ public class Editorial extends Entidad {
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    @Override
+    public String toString() {
+        return "Editorial{" + "nombre=" + nombre + ", pais=" + pais + '}';
     }
     
     

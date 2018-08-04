@@ -1,3 +1,7 @@
+create database biblioteca;
+
+use biblioteca;
+
 CREATE TABLE `autor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,

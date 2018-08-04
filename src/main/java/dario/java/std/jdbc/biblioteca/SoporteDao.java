@@ -54,12 +54,13 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
     @Override
     public void borrar(Integer id) {
         try {
-            String sql = "delete from "+obtenerNombreTabla() + " where id = ?";
+            String sql = "delete from "+obtenerNombreTabla() + " where id="+id;
 
-            PreparedStatement stmt = obtenerConexion().prepareStatement(sql);
-            stmt.setInt(1, id);
+            Statement stmt = obtenerConexion().createStatement();
+            //stmt.setInt(1, id);
             
-            ejecutarActualizacion(stmt);
+            //ejecutarActualizacion(stmt);
+            stmt.execute(sql);
         } catch (SQLException ex) {
             throw new AccedoDeDatosException(ex);
         }
@@ -87,10 +88,12 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
     @Override
     public T traerPorId(Integer id) {
         try {
-            String sql = "select * from "+obtenerNombreTabla() + " where id = ?";
+            String sql = "select * from "+obtenerNombreTabla() + " where id="+id;
 
-            PreparedStatement stmt = obtenerConexion().prepareStatement(sql);
-            stmt.setInt(1, id);
+            Statement stmt = obtenerConexion().createStatement();
+            //stmt.setInt(1, id);
+            
+            //ejecutarActualizacion(stmt);
             
             ResultSet rs = stmt.executeQuery(sql);
             

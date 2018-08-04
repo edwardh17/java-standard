@@ -22,12 +22,12 @@ public class AdministradorDeConexiones {
         }
     }    
     
-    public static AdministradorDeConexiones getInstancia() {
-        synchronized(instancia) {
-            if (instancia==null) {
-                instancia = new AdministradorDeConexiones();
-            }
+    public synchronized static AdministradorDeConexiones getInstancia() {
+        
+        if (instancia==null) {
+            instancia = new AdministradorDeConexiones();
         }
+
         return instancia;
     }
 
