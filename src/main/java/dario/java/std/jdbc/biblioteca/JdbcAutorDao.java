@@ -33,14 +33,17 @@ public class JdbcAutorDao implements AutorDao {
             String sql =  "insert into autor (nombre, apellido, nacionalidad) "
                     + " values (?, ?, ?)";
             
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, autor.getNombre());
             stmt.setString(2, autor.getApellido());
             stmt.setString(3, autor.getNacionalidad());
             
-            int rows = stmt.executeUpdate();
-            logger.log(Level.INFO, "Rows:"+rows);
-            //TODO: Setear id al autor
+            ejecutarActualizacion(stmt);
+            
+            ResultSet generatedKey = stmt.getGeneratedKeys();
+            if (generatedKey.next()) {
+                autor.setId(generatedKey.getInt(1));
+            }
             
             return autor;
         } catch (SQLException ex) {
@@ -53,12 +56,33 @@ public class JdbcAutorDao implements AutorDao {
 
     @Override
     public void actualizar(Autor autor) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            String sql = "update autor set nombre = ?, apellido = ?, nacionalidad = ? where id = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, autor.getNombre());
+            stmt.setString(2, autor.getApellido());
+            stmt.setString(3, autor.getNacionalidad());
+            stmt.setInt(4, autor.getId());
+            
+            ejecutarActualizacion(stmt);
+
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
-    public Autor borrar(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void borrar(Integer id) {
+        try {
+            String sql = "delete from autor where id=?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            
+            ejecutarActualizacion(stmt);
+            
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -110,6 +134,11 @@ public class JdbcAutorDao implements AutorDao {
         String apellido = rs.getString("apellido");
         String nacionalidad = rs.getString("nacionalidad");
         return new Autor(id, nombre, apellido, nacionalidad);
+    }
+    
+    private void ejecutarActualizacion(PreparedStatement stmt) throws SQLException {
+        int rows = stmt.executeUpdate();
+        logger.log(Level.INFO, "Registros modificados: "+rows);
     }
     
 }

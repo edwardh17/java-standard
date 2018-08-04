@@ -1,27 +1,23 @@
 package dario.java.std.jdbc.biblioteca;
 
-public class Autor {
+public class Autor extends Entidad {
     
-    private Integer id;
     private String nombre;
     private String apellido;
     private String nacionalidad;
 
     public Autor(Integer id, String nombre, String apellido, String nacionalidad) {
-        this.id = id;
+        super(id);
         this.nombre = nombre;
         this.apellido = apellido;
         this.nacionalidad = nacionalidad;
     }
 
     public Autor(String nombre, String apellido, String nacionalidad) {
+        super(null);
         this.nombre = nombre;
         this.apellido = apellido;
         this.nacionalidad = nacionalidad;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getNombre() {
@@ -34,10 +30,6 @@ public class Autor {
 
     public String getNacionalidad() {
         return nacionalidad;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public void setNombre(String nombre) {
@@ -54,7 +46,7 @@ public class Autor {
 
     @Override
     public String toString() {
-        return "Autor{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nacionalidad=" + nacionalidad + '}';
+        return "Autor{" + "id=" + getId() + ", nombre=" + nombre + ", apellido=" + apellido + ", nacionalidad=" + nacionalidad + '}';
     }
     
     
