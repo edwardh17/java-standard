@@ -1,6 +1,5 @@
 package dario.java.std.jdbc.biblioteca;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -11,16 +10,24 @@ public class Configuracion {
 
     private final Logger logger = LoggerFactory.getLogger(Configuracion.class);
 
+    private static Configuracion instancia;
+    
     private Properties properties;
-
-
-    public Configuracion() {
+    
+    public synchronized static Configuracion getInstancia() {
+        if (instancia == null) {
+            instancia = new Configuracion();
+        }
+        return instancia;
+    }
+    
+    private Configuracion() {
         properties = new  Properties();
         InputStream input = null;
 
         try {
 
-            input = new FileInputStream("config.properties");
+            input = getClass().getResourceAsStream("/config.properties");
 
             // load a properties file
             properties.load(input);

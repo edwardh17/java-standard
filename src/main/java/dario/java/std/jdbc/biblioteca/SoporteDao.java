@@ -8,12 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
     
-    private static Logger logger = Logger.getLogger(SoporteDao.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public T grabar(T e) {
@@ -32,7 +32,7 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
             
             return e;
         } catch (SQLException ex) {            
-            throw new AccedoDeDatosException(ex);
+            throw new LecturaDeDatosException(ex);
         }
     }
 
@@ -48,7 +48,7 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
             
             ejecutarActualizacion(stmt);
         } catch (SQLException ex) {
-            throw new AccedoDeDatosException(ex);
+            throw new LecturaDeDatosException(ex);
         }    }
 
     @Override
@@ -62,7 +62,7 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
             //ejecutarActualizacion(stmt);
             stmt.execute(sql);
         } catch (SQLException ex) {
-            throw new AccedoDeDatosException(ex);
+            throw new LecturaDeDatosException(ex);
         }
     }
 
@@ -81,7 +81,7 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
             
             return entidades;
         } catch (SQLException ex) {
-            throw new AccedoDeDatosException(ex);
+            throw new LecturaDeDatosException(ex);
         }
     }
 
@@ -105,13 +105,13 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
             
             return entidad;
         } catch (SQLException ex) {
-            throw new AccedoDeDatosException(ex);
+            throw new LecturaDeDatosException(ex);
         }
     }
     
     private void ejecutarActualizacion(PreparedStatement stmt) throws SQLException {
         int rows = stmt.executeUpdate();
-        getLogger().log(Level.INFO, "Registros modificados: "+rows);
+        logger.info("Registros modificados: "+rows);
     }
     
     private void setearParametros(Map<Integer, Object> parametros, PreparedStatement stmt) {
@@ -123,7 +123,7 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
                     stmt.setString(k, (String)v);
                 }
             } catch (SQLException ex) {
-                throw new AccedoDeDatosException(ex);
+                throw new LecturaDeDatosException(ex);
             }
         });
     }
@@ -132,9 +132,6 @@ public abstract class SoporteDao<T extends Entidad> implements Dao<T> {
         return AdministradorDeConexiones.getInstancia().getConnection();
     }
 
-    protected Logger getLogger() {
-        return logger;
-    }    
     protected abstract String generarSqlGrabar();
     protected abstract String obtenerSqlActualizar();
     protected abstract String obtenerNombreTabla();

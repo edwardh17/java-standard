@@ -18,14 +18,14 @@ public class AdministradorDeConexiones {
     
     private AdministradorDeConexiones() {
         try {
-            Configuracion configuracion = new Configuracion();
+            Configuracion configuracion = Configuracion.getInstancia();
             String usuario = configuracion.getDBUser();
             String clave = configuracion.getDBPassword();
             String stringConection = configuracion.getDatabase();
             connection = DriverManager.getConnection(stringConection, usuario, clave);
         } catch (SQLException ex) {
             logger.error("Error conectandose a la bd", ex);
-            throw new AccedoDeDatosException(ex);
+            throw new LecturaDeDatosException(ex);
         }
     }    
     
