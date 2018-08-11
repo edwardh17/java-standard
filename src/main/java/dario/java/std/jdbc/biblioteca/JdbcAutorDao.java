@@ -36,7 +36,7 @@ public class JdbcAutorDao extends SoporteDao<Autor> implements AutorDao {
     protected Map<Integer, Object> obtenerParametros(Autor e) {
         Map<Integer, Object> parametros = new HashMap<>();
         parametros.put(1,e.getNombre());
-        parametros.put(1,e.getApellido());
+        parametros.put(2,e.getApellido());
         parametros.put(3,e.getNacionalidad());
         return parametros;
     }
