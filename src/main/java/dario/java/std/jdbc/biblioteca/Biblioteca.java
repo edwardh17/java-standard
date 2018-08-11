@@ -32,7 +32,6 @@ public class Biblioteca {
 
         libroDao.grabar(elAleph);
         logger.info("guardando el Aleph");
-
         
         libroDao.traerTodos().forEach(l -> logger.info(l.toString()));
      
