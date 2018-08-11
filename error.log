@@ -1,0 +1,26 @@
+2018-08-11 10:49:04 - error al cargar configuracion
+java.io.FileNotFoundException: config.properties (El sistema no puede encontrar el archivo especificado)
+	at java.io.FileInputStream.open0(Native Method) ~[na:1.8.0_152]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[na:1.8.0_152]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_152]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_152]
+	at dario.java.std.jdbc.biblioteca.Configuracion.<init>(Configuracion.java:31) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.Configuracion.getInstancia(Configuracion.java:20) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.AdministradorDeConexiones.<init>(AdministradorDeConexiones.java:21) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.AdministradorDeConexiones.getInstancia(AdministradorDeConexiones.java:35) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.SoporteDao.obtenerConexion(SoporteDao.java:132) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.SoporteDao.grabar(SoporteDao.java:22) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.Biblioteca.main(Biblioteca.java:17) [classes/:na]
+2018-08-11 10:50:40 - error al cargar configuracion
+java.io.FileNotFoundException: config.properties (El sistema no puede encontrar el archivo especificado)
+	at java.io.FileInputStream.open0(Native Method) ~[na:1.8.0_152]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[na:1.8.0_152]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[na:1.8.0_152]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[na:1.8.0_152]
+	at dario.java.std.jdbc.biblioteca.Configuracion.<init>(Configuracion.java:31) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.Configuracion.getInstancia(Configuracion.java:20) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.AdministradorDeConexiones.<init>(AdministradorDeConexiones.java:21) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.AdministradorDeConexiones.getInstancia(AdministradorDeConexiones.java:35) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.SoporteDao.obtenerConexion(SoporteDao.java:132) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.SoporteDao.grabar(SoporteDao.java:22) [classes/:na]
+	at dario.java.std.jdbc.biblioteca.Biblioteca.main(Biblioteca.java:17) [classes/:na]
